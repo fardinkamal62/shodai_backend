@@ -1,0 +1,34 @@
+{
+  "name": "shodai_backend",
+  "version": "1.0.0",
+  "description": "Backend for Shodai mobile app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rafiul-Omar2022/Aectolog-acount-management.git"
+  },
+  "keywords": [
+    "notes"
+  ],
+  "author": "Fardin Kamal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rafiul-Omar2022/Aectolog-acount-management/issues"
+  },
+  "homepage": "https://github.com/Rafiul-Omar2022/Aectolog-acount-management#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
