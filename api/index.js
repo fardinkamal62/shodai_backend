@@ -8,7 +8,7 @@ const db = require('../db');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-api.installs = async (req, res) => {
+api.installs = async (req) => {
     const body = req.body
     await db.insert({
         buildId: body.buildId,
@@ -17,6 +17,6 @@ api.installs = async (req, res) => {
 }
 
 api.items = async (req, res) => {
-    const response = await db.find({ name: { $regex: `${req.query.item}`, $options: "igm" } }, 3);
+    const response = await db.find({ name: { $regex: `${req.query.item}`, $options: "im" } }, 3);
     res.json(response);
 }

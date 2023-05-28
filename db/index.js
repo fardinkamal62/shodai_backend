@@ -1,22 +1,40 @@
-require("dotenv").config();
+require('dotenv').config();
+const { MongoClient } = require('mongodb');
 
-const MongoClient = require('mongodb').MongoClient
-const uri = process.env.MONGO
+const mongo = module.exports;
 
-const mongo = module.exports
+const uri = process.env.MONGO;
+const dbName = process.env.DB;
+const collectionName = process.env.COLLECTION;
 
-const db = process.env.DB;
-const collection = process.env.COLLECTION;
+let client;
 
-const client = new MongoClient(uri)
 mongo.init = async () => {
-    mongo.connection = await client.connect()
-}
+  try {
+    client = await MongoClient.connect(uri);
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Failed to connect to MongoDB:', error);
+    throw error;
+  }
+};
 
 mongo.find = async (query, limit, page) => {
-    return await mongo.connection.db(db).collection(collection).find(query).limit(parseInt(limit)).skip(parseInt(limit) * parseInt(page)).toArray()
-}
+  try {
+    const collection = client.db(dbName).collection(collectionName);
+    return await collection.find(query).limit(parseInt(limit)).skip(parseInt(limit) * parseInt(page)).toArray();
+  } catch (error) {
+    console.error('Failed to perform find operation:', error);
+    throw error;
+  }
+};
 
 mongo.insert = async (data) => {
-    return await mongo.connection.db(db).collection(collection).insertOne(data)
-}
+  try {
+    const collection = client.db(dbName).collection(collectionName);
+    return await collection.insertOne(data);
+  } catch (error) {
+    console.error('Failed to perform insert operation:', error);
+    throw error;
+  }
+};
